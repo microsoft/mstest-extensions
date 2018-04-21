@@ -10,7 +10,8 @@ using System;
         
 public class Person
 {
-    public Person( string name ) => Name = name ?? throw new ArgumentNullException( nameof( name ), "The name cannot be null." );
+    public Person( string name ) =>
+        Name = name ?? throw new ArgumentNullException( nameof( name ), "The name cannot be null." );
             
     public string Name { get; }
 }
