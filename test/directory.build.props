@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <ImportGroup Condition=" '$(MSBuildProjectExtension)' != '.shproj' ">
+    <Import Project="..\build\common.props" />
+    <Import Project="..\build\code-analysis.props" />
+  </ImportGroup>
+
+  <PropertyGroup Label="Code Analysis">
+    <NoWarn>$(NoWarn),1573,1591</NoWarn>
+  </PropertyGroup>
+
+</Project>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup Label="Common">
+    <Company>Microsoft Corporation</Company>
+    <Authors>Microsoft</Authors>
+    <Copyright>© $(Company). All rights reserved.</Copyright>
+    <NeutralLanguage>en</NeutralLanguage>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    
+  </PropertyGroup>
+
+  <ItemGroup Label="Code">
+
+    <AssemblyAttribute Include="System.Reflection.AssemblyTrademarkAttribute">
+      <_Parameter1>$([MSBuild]::ValueOrDefault(`$(Company)`, `Microsoft Corporation`))</_Parameter1>
+    </AssemblyAttribute>
+
+    <!--
+    The WriteCodeFragment task currently only supports attributes with string values. This
+    makes it impossible to use this technique to generate [assembly: ComVisible(false)]
+    and [assembly: CLSCompliant(true)]. If/when the feature is enhanced, the following
+    items can be uncommented and the SharedAssemblyInfo.cs file can be deleted.
+    
+    REF: https://github.com/Microsoft/msbuild/issues/2281
+    -->
+
+    <!--
+    <AssemblyAttribute Include="System.Runtime.InteropServices.ComVisibleAttribute">
+      <_Parameter1>false</_Parameter1>
+    </AssemblyAttribute>
+    <AssemblyAttribute Include="System.CLSCompliantAttribute">
+      <_Parameter1>true</_Parameter1>
+    </AssemblyAttribute>
+    -->
+
+  </ItemGroup>
+
+</Project>

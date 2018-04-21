@@ -1,0 +1,79 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2037
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "misc", "misc", "{F454101F-4A18-4D94-B31B-421B2A941817}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+		LICENSE = LICENSE
+		nuget.config = nuget.config
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{470A2B11-1E4E-408E-B25A-57C51F5D03D9}"
+	ProjectSection(SolutionItems) = preProject
+		src\directory.build.props = src\directory.build.props
+		src\directory.build.targets = src\directory.build.targets
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{A933C9DC-93E7-47E3-AABC-97477DEBF5E5}"
+	ProjectSection(SolutionItems) = preProject
+		after.mstestex.sln.targets = after.mstestex.sln.targets
+		build\code-analysis.props = build\code-analysis.props
+		build\code-analysis.ruleset = build\code-analysis.ruleset
+		build\common.props = build\common.props
+		build\file-version.targets = build\file-version.targets
+		build\key.snk = build\key.snk
+		build\nuget.props = build\nuget.props
+		build\nuget.targets = build\nuget.targets
+		build\resource.targets = build\resource.targets
+		build\signing.props = build\signing.props
+		build\signing.targets = build\signing.targets
+		build\stylecop.json = build\stylecop.json
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{A3E2B3D0-0680-49C9-83E3-8EF103BF8F70}"
+	ProjectSection(SolutionItems) = preProject
+		test\directory.build.props = test\directory.build.props
+		test\directory.build.targets = test\directory.build.targets
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.UnitTestFramework.Extensions", "src\Microsoft.UnitTestFramework.Extensions\Microsoft.UnitTestFramework.Extensions.csproj", "{7C7D8038-6491-4875-BF12-F81C9887E129}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Shared", "src\Shared\Shared.shproj", "{0D22AC81-1F4C-4298-87BA-EB19775DDC57}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.UnitTestFramework.Extensions.Tests", "test\Microsoft.UnitTestFramework.Extensions.Tests\Microsoft.UnitTestFramework.Extensions.Tests.csproj", "{44506533-94A2-4151-8D6F-B3BBBB3A9974}"
+EndProject
+Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		src\Shared\Shared.projitems*{0d22ac81-1f4c-4298-87ba-eb19775ddc57}*SharedItemsImports = 13
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7C7D8038-6491-4875-BF12-F81C9887E129}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C7D8038-6491-4875-BF12-F81C9887E129}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C7D8038-6491-4875-BF12-F81C9887E129}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C7D8038-6491-4875-BF12-F81C9887E129}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44506533-94A2-4151-8D6F-B3BBBB3A9974}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44506533-94A2-4151-8D6F-B3BBBB3A9974}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44506533-94A2-4151-8D6F-B3BBBB3A9974}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44506533-94A2-4151-8D6F-B3BBBB3A9974}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{7C7D8038-6491-4875-BF12-F81C9887E129} = {470A2B11-1E4E-408E-B25A-57C51F5D03D9}
+		{0D22AC81-1F4C-4298-87BA-EB19775DDC57} = {470A2B11-1E4E-408E-B25A-57C51F5D03D9}
+		{44506533-94A2-4151-8D6F-B3BBBB3A9974} = {A3E2B3D0-0680-49C9-83E3-8EF103BF8F70}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4FFD0748-D9E4-4769-8723-B013BFC7FE66}
+	EndGlobalSection
+EndGlobal

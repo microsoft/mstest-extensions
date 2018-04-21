@@ -1,0 +1,66 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+ <PropertyGroup>
+  <VersionPrefix>2.0.0</VersionPrefix>
+  <AssemblyVersion>2.0.0.0</AssemblyVersion>
+  <TargetFrameworks>netstandard1.0;net45;uap10.0</TargetFrameworks>
+  <AssemblyTitle>Microsoft Visual Studio Unit Test Framework Extensions</AssemblyTitle>
+  <Description>This package contains extensions to the Microsoft Visual Studio Team Test unit testing framework. Features include alternatives to ExpectedExceptionAttribute and a fully extensible assertion application programming interface.</Description>
+  <RootNamespace>Microsoft.VisualStudio.TestTools.UnitTesting</RootNamespace>
+  <PackageTags>MSTest;TestFramework;UnitTest;MSTestV2;Microsoft;Test;Testing;TDD;Framework;</PackageTags>
+ </PropertyGroup>
+
+ <ItemGroup>
+  <ReleaseNotes Include="Adopt .NET Standard 1.0" />
+  <ReleaseNotes Include="Transition to MSTest V2" />
+ </ItemGroup>
+
+ <PropertyGroup Condition=" '$(TargetFramework)' == 'uap10.0' ">
+  <SignAssembly>false</SignAssembly>
+  <DefineConstants>$(DefineConstants);UAP10_0</DefineConstants>
+  <NugetTargetMoniker>UAP,Version=v10.0</NugetTargetMoniker>
+  <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
+  <TargetPlatformMinVersion>10.0.10240.0</TargetPlatformMinVersion>
+  <TargetPlatformVersion>$(TargetPlatformMinVersion)</TargetPlatformVersion>
+  <TargetFrameworkIdentifier>.NETCore</TargetFrameworkIdentifier>
+  <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
+ </PropertyGroup>
+
+ <ItemGroup>
+  <PackageReference Include="System.Diagnostics.Contracts" Version="4.0.1" NoWarn="NU1608" />
+  <PackageReference Include="MSTest.TestFramework" Version="1.1.17" />
+ </ItemGroup>
+
+ <ItemGroup Condition=" '$(TargetFramework)' == 'uap10.0' ">
+  <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="5.0.0" />
+  <PackageReference Include="Microsoft.Win32.Primitives" Version="4.0.1" NoWarn="NU1608" />
+  <PackageReference Include="System.Collections" Version="4.0.11" NoWarn="NU1608" />
+  <PackageReference Include="System.Diagnostics.Debug" Version="4.0.11" NoWarn="NU1608" />
+  <PackageReference Include="System.Diagnostics.Tracing" Version="4.1.0" NoWarn="NU1608" />
+  <PackageReference Include="System.Globalization" Version="4.0.11" NoWarn="NU1608" />
+  <PackageReference Include="System.IO" Version="4.1.0" NoWarn="NU1608" />
+  <PackageReference Include="System.Private.Uri" Version="4.0.1" NoWarn="NU1608" />
+  <PackageReference Include="System.Reflection" Version="4.1.0" NoWarn="NU1608" />
+  <PackageReference Include="System.Reflection.Extensions" Version="4.0.1" NoWarn="NU1608" />
+  <PackageReference Include="System.Reflection.Primitives" Version="4.0.1" NoWarn="NU1608" />
+  <PackageReference Include="System.Resources.ResourceManager" Version="4.0.1" NoWarn="NU1608" />
+  <PackageReference Include="System.Runtime" Version="4.1.0" NoWarn="NU1608" />
+  <PackageReference Include="System.Runtime.InteropServices" Version="4.1.0" NoWarn="NU1608" />
+  <PackageReference Include="System.Runtime.Extensions" Version="4.1.0" NoWarn="NU1608" />
+  <PackageReference Include="System.Runtime.Handles" Version="4.0.1" NoWarn="NU1608" />
+  <PackageReference Include="System.Runtime.WindowsRuntime" Version="4.0.11" NoWarn="NU1608" />
+  <PackageReference Include="System.Text.Encoding" Version="4.0.11" NoWarn="NU1608" />
+  <PackageReference Include="System.Text.Encoding.Extensions" Version="4.0.11" NoWarn="NU1608" />
+  <PackageReference Include="System.Threading" Version="4.0.11" NoWarn="NU1608" />
+  <PackageReference Include="System.Threading.Tasks" Version="4.0.11" NoWarn="NU1608" />
+ </ItemGroup>
+
+ <Import Project="..\Shared\Shared.projitems" Label="Shared" />
+
+ <Target Name="AdjustReferringTargetFrameworkForUAP" BeforeTargets="GetTargetFrameworkProperties">
+  <PropertyGroup Condition="'$(ReferringTargetFramework)' == '.NETCore,Version=v5.0'">
+   <ReferringTargetFramework>UAP,Version=v10.0</ReferringTargetFramework>
+  </PropertyGroup>
+ </Target>
+
+</Project>

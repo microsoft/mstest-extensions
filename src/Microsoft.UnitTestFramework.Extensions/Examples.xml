@@ -1,0 +1,1211 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Types>
+ <Type name="ExceptionExtensions">
+  <Member name="Verify`1">
+   <example>
+    This example illustrates verifying the message of an asserted exception.
+    <code lang="C#">
+     <![CDATA[
+        using Microsoft.VisualStudio.TestTools.UnitTesting;
+        using System;
+        
+        public class Person
+        {
+            public Person( string name ) => Name = name ?? throw new ArgumentNullException( nameof( name ), "The name cannot be null." );
+            
+            public string Name { get; }
+        }
+        
+        [TestClass]
+        public class PersonTest : UnitTest
+        {
+            [TestMethod]
+            public void ConstructorShouldNotAllowNullName()
+            {
+                Assert.ThrowsIfArgumentNull( ( string name ) => new Person( name ) )
+                      .Verify( e => e.Message == "The name cannot be null." );
+            }
+        }
+        ]]>
+    </code>
+   </example>
+   <example>
+    This example illustrates verifying the message of an asserted exception.
+    <code lang="C#">
+     <![CDATA[
+        using Microsoft.VisualStudio.TestTools.UnitTesting;
+        using System;
+        
+        public class Person
+        {
+            public Person( string name ) => Name = name ?? throw new ArgumentNullException( nameof( name ), "The name cannot be null." );
+            
+            public string Name { get; }
+        }
+        
+        [TestClass]
+        public class PersonTest : UnitTest
+        {
+            [TestMethod]
+            public void ConstructorShouldNotAllowNullName()
+            {
+                Assert.ThrowsIfArgumentNull( ( string name ) => new Person( name ) )
+                      .Verify( e => e.Message == "The name cannot be null.",
+                               "The actual message does not equal the expected message." );
+            }
+        }
+        ]]>
+    </code>
+   </example>
+  </Member>
+  <Member name="Throws">
+   <example>
+    This example illustrates asserting an exception.
+    <code lang="C#">
+     <![CDATA[
+        using Microsoft.VisualStudio.TestTools.UnitTesting;
+        using System;
+        
+        public class Person
+        {
+            public Person( string name ) => Name = name ?? throw new ArgumentNullException( nameof( name ), "The name cannot be null." );
+            
+            public string Name { get; }
+        }
+        
+        [TestClass]
+        public class PersonTest : UnitTest
+        {
+            [TestMethod]
+            public void ConstructorShouldNotAllowNullName()
+            {
+                Assert.Throws( () => new Person( null ) );
+            }
+        }
+        ]]>
+    </code>
+   </example>
+   <example>
+    This example illustrates asserting an exception.
+    <code lang="C#">
+     <![CDATA[
+        using Microsoft.VisualStudio.TestTools.UnitTesting;
+        using System;
+        
+        public class Person
+        {
+            public Person( string name ) => Name = name ?? throw new ArgumentNullException( nameof( name ), "The name cannot be null." );
+            
+            public string Name { get; }
+        }
+        
+        [TestClass]
+        public class PersonTest : UnitTest
+        {
+            [TestMethod]
+            public void ConstructorShouldNotAllowNullName()
+            {
+                Assert.Throws( () => new Person( null ), "An exception was expected, but not thrown." );
+            }
+        }
+        ]]>
+    </code>
+   </example>
+  </Member>
+  <Member name="Throws`1">
+   <example>
+    This example illustrates asserting an exception.
+    <code lang="C#">
+     <![CDATA[
+        using Microsoft.VisualStudio.TestTools.UnitTesting;
+        using System;
+        
+        public class Person
+        {
+            public Person( string name ) => Name = name ?? throw new ArgumentNullException( nameof( name ), "The name cannot be null." );
+            
+            public string Name { get; }
+        }
+        
+        [TestClass]
+        public class PersonTest : UnitTest
+        {
+            [TestMethod]
+            public void ConstructorShouldNotAllowNullName()
+            {
+                Assert.Throws<ArgumentNullException>( () => new Person( null ) );
+            }
+        }
+        ]]>
+    </code>
+   </example>
+   <example>
+    This example illustrates asserting an exception.
+    <code lang="C#">
+     <![CDATA[
+        using Microsoft.VisualStudio.TestTools.UnitTesting;
+        using System;
+        
+        public class Person
+        {
+            public Person( string name ) => Name = name ?? throw new ArgumentNullException( nameof( name ), "The name cannot be null." );
+            
+            public string Name { get; }
+        }
+        
+        [TestClass]
+        public class PersonTest : UnitTest
+        {
+            [TestMethod]
+            public void ConstructorShouldNotAllowNullName()
+            {
+                Assert.Throws<ArgumentNullException>( () => new Person( null ), "An argument null exception was expected." );
+            }
+        }
+        ]]>
+    </code>
+   </example>
+  </Member>
+  <Member name="ThrowsIfArgumentIsEmpty">
+   <example>
+    This example illustrates asserting an exception for an empty string.
+    <code lang="C#">
+     <![CDATA[
+        using Microsoft.VisualStudio.TestTools.UnitTesting;
+        using System;
+        
+        public class Person
+        {
+            public Person( string name )
+            {
+                if ( string.IsNullOrEmpty( name ) )
+                {
+                    throw new ArgumentNullException( nameof( name ), "The name cannot be null or empty." );
+                }
+                
+                Name = name;
+            }
+        
+            public string Name { get; }
+        }
+        
+        [TestClass]
+        public class PersonTest : UnitTest
+        {
+            [TestMethod]
+            public void ConstructorShouldNotAllowEmptyName()
+            {
+                Assert.ThrowsIfArgumentIsEmpty( name => new Person( name ) );
+            }
+        }
+        ]]>
+    </code>
+   </example>
+   <example>
+    This example illustrates asserting an exception for an empty string.
+    <code lang="C#">
+     <![CDATA[
+        using Microsoft.VisualStudio.TestTools.UnitTesting;
+        using System;
+        
+        public class Person
+        {
+            public Person( string name )
+            {
+                if ( string.IsNullOrEmpty( name ) )
+                {
+                    throw new ArgumentNullException( nameof( name ), "The name cannot be null or empty." );
+                }
+                
+                Name = name;
+            }
+        
+            public string Name { get; }
+        }
+        
+        [TestClass]
+        public class PersonTest : UnitTest
+        {
+            [TestMethod]
+            public void ConstructorShouldNotAllowEmptyName()
+            {
+                Assert.ThrowsIfArgumentIsEmpty( name => new Person( name ), "An argument null exception was expected." );
+            }
+        }
+        ]]>
+    </code>
+   </example>
+  </Member>
+  <Member name="ThrowsIfArgumentIsEmpty`1">
+   <example>
+    This example illustrates asserting an exception for an empty string.
+    <code lang="C#">
+     <![CDATA[
+        using Microsoft.VisualStudio.TestTools.UnitTesting;
+        using System;
+        
+        public class Person
+        {
+            public Person( string name )
+            {
+                if ( string.IsNullOrEmpty( name ) )
+                {
+                    throw new ArgumentNullException( nameof( name ), "The name cannot be null or empty." );
+                }
+                
+                Name = name;
+            }
+        
+            public string Name { get; }
+        }
+        
+        [TestClass]
+        public class PersonTest : UnitTest
+        {
+            [TestMethod]
+            public void ConstructorShouldNotAllowEmptyName()
+            {
+                Assert.ThrowsIfArgumentIsEmpty<ArgumentNullException>( name => new Person( name ) );
+            }
+        }
+        ]]>
+    </code>
+   </example>
+   <example>
+    This example illustrates asserting an exception for an empty string.
+    <code lang="C#">
+     <![CDATA[
+        using Microsoft.VisualStudio.TestTools.UnitTesting;
+        using System;
+        
+        public class Person
+        {
+            public Person( string name )
+            {
+                if ( string.IsNullOrEmpty( name ) )
+                {
+                    throw new ArgumentNullException( nameof( name ), "The name cannot be null or empty." );
+                }
+                
+                Name = name;
+            }
+        
+            public string Name { get; }
+        }
+        
+        [TestClass]
+        public class PersonTest : UnitTest
+        {
+            [TestMethod]
+            public void ConstructorShouldNotAllowEmptyName()
+            {
+                Assert.ThrowsIfArgumentIsEmpty<ArgumentNullException>( name => new Person( name ), "An argument null exception was expected." );
+            }
+        }
+        ]]>
+    </code>
+   </example>
+  </Member>
+  <Member name="ThrowsIfArgumentIsWhiteSpace">
+   <example>
+    This example illustrates asserting an exception for a white space string.
+    <code lang="C#">
+     <![CDATA[
+        using Microsoft.VisualStudio.TestTools.UnitTesting;
+        using System;
+        
+        public class Person
+        {
+            public Person( string name )
+            {
+                if ( string.IsNullOrWhiteSpace( name ) )
+                {
+                    throw new ArgumentNullException( nameof( name ), "The name cannot be null, empty, or white space." );
+                }
+                
+                Name = name;
+            }
+        
+            public string Name { get; }
+        }
+        
+        [TestClass]
+        public class PersonTest : UnitTest
+        {
+            [TestMethod]
+            public void ConstructorShouldNotAllowWhiteSpaceName()
+            {
+                Assert.ThrowsIfArgumentIsWhiteSpace( name => new Person( name ) );
+            }
+        }
+        ]]>
+    </code>
+   </example>
+   <example>
+    This example illustrates asserting an exception for a white space string.
+    <code lang="C#">
+     <![CDATA[
+        using Microsoft.VisualStudio.TestTools.UnitTesting;
+        using System;
+        
+        public class Person
+        {
+            public Person( string name )
+            {
+                if ( string.IsNullOrWhiteSpace( name ) )
+                {
+                    throw new ArgumentNullException( nameof( name ), "The name cannot be null, empty, or white space." );
+                }
+                
+                Name = name;
+            }
+        
+            public string Name { get; }
+        }
+        
+        [TestClass]
+        public class PersonTest : UnitTest
+        {
+            [TestMethod]
+            public void ConstructorShouldNotAllowWhiteSpaceName()
+            {
+                Assert.ThrowsIfArgumentIsWhiteSpace( name => new Person( name ), "An argument null exception was expected." );
+            }
+        }
+        ]]>
+    </code>
+   </example>
+  </Member>
+  <Member name="ThrowsIfArgumentIsWhiteSpace`1">
+   <example>
+    This example illustrates asserting an exception for a white space string.
+    <code lang="C#">
+     <![CDATA[
+        using Microsoft.VisualStudio.TestTools.UnitTesting;
+        using System;
+        
+        public class Person
+        {
+            public Person( string name )
+            {
+                if ( string.IsNullOrWhiteSpace( name ) )
+                {
+                    throw new ArgumentNullException( nameof( name ), "The name cannot be null, empty, or white space." );
+                }
+                
+                Name = name;
+            }
+        
+            public string Name { get; }
+        }
+        
+        [TestClass]
+        public class PersonTest : UnitTest
+        {
+            [TestMethod]
+            public void ConstructorShouldNotAllowWhiteSpaceName()
+            {
+                Assert.ThrowsIfArgumentIsWhiteSpace<ArgumentNullException>( name => new Person( name ) );
+            }
+        }
+        ]]>
+    </code>
+   </example>
+   <example>
+    This example illustrates asserting an exception for a white space string.
+    <code lang="C#">
+     <![CDATA[
+        using Microsoft.VisualStudio.TestTools.UnitTesting;
+        using System;
+        
+        public class Person
+        {
+            public Person( string name )
+            {
+                if ( string.IsNullOrWhiteSpace( name ) )
+                {
+                    throw new ArgumentNullException( nameof( name ), "The name cannot be null, empty, or white space." );
+                }
+                
+                Name = name;
+            }
+        
+            public string Name { get; }
+        }
+        
+        [TestClass]
+        public class PersonTest : UnitTest
+        {
+            [TestMethod]
+            public void ConstructorShouldNotAllowWhiteSpaceName()
+            {
+                Assert.ThrowsIfArgumentIsWhiteSpace<ArgumentNullException>( name => new Person( name ), "An argument null exception was expected." );
+            }
+        }
+        ]]>
+    </code>
+   </example>
+  </Member>
+  <Member name="ThrowsIfArgumentIsNull`1">
+   <example>
+    This example illustrates asserting an exception.
+    <code lang="C#">
+     <![CDATA[
+        using Microsoft.VisualStudio.TestTools.UnitTesting;
+        using System;
+        
+        public class Person
+        {
+            public Person( string name ) => Name = name ?? throw new ArgumentNullException( nameof( name ), "The name cannot be null." );
+            
+            public string Name { get; }
+        }
+        
+        [TestClass]
+        public class PersonTest : UnitTest
+        {
+            [TestMethod]
+            public void ConstructorShouldNotAllowNullName()
+            {
+                Assert.ThrowsIfArgumentIsNull( ( string name ) => new Person( name ) );
+            }
+        }
+        ]]>
+    </code>
+   </example>
+   <example>
+    This example illustrates asserting an exception.
+    <code lang="C#">
+     <![CDATA[
+        using Microsoft.VisualStudio.TestTools.UnitTesting;
+        using System;
+        
+        public class Person
+        {
+            public Person( string name ) => Name = name ?? throw new ArgumentNullException( nameof( name ), "The name cannot be null." );
+            
+            public string Name { get; }
+        }
+        
+        [TestClass]
+        public class PersonTest : UnitTest
+        {
+            [TestMethod]
+            public void ConstructorShouldNotAllowNullName()
+            {
+                Assert.ThrowsIfArgumentIsNull( ( string name ) => new Person( name ), "An exception was expected, but not thrown." );
+            }
+        }
+        ]]>
+    </code>
+   </example>
+  </Member>
+  <Member name="ThrowsIfArgumentIsNull`2">
+   <example>
+    This example illustrates asserting an exception.
+    <code lang="C#">
+     <![CDATA[
+        using Microsoft.VisualStudio.TestTools.UnitTesting;
+        using System;
+        
+        public class Person
+        {
+            public Person( string name ) => Name = name ?? throw new ArgumentNullException( nameof( name ), "The name cannot be null." );
+            
+            public string Name { get; }
+        }
+        
+        [TestClass]
+        public class PersonTest : UnitTest
+        {
+            [TestMethod]
+            public void ConstructorShouldNotAllowNullName()
+            {
+                Assert.ThrowsIfArgumentIsNull<string, ArgumentNullException>( name => new Person( name ) );
+            }
+        }
+        ]]>
+    </code>
+   </example>
+   <example>
+    This example illustrates asserting an exception.
+    <code lang="C#">
+     <![CDATA[
+        using Microsoft.VisualStudio.TestTools.UnitTesting;
+        using System;
+        
+        public class Person
+        {
+            public Person( string name ) => Name = name ?? throw new ArgumentNullException( nameof( name ), "The name cannot be null." );
+            
+            public string Name { get; }
+        }
+        
+        [TestClass]
+        public class PersonTest : UnitTest
+        {
+            [TestMethod]
+            public void ConstructorShouldNotAllowNullName()
+            {
+                Assert.ThrowsIfArgumentIsNull<string, ArgumentNullException>( name => new Person( name ), "An argument null exception was expected." );
+            }
+        }
+        ]]>
+    </code>
+   </example>
+  </Member>
+  <Member name="ThrowsIfArgumentIsOutOfRange`1">
+   <example>
+    This example illustrates asserting an exception for an argument that is out of range.
+    <code lang="C#">
+     <![CDATA[
+        using Microsoft.VisualStudio.TestTools.UnitTesting;
+        using System;
+        
+        public class Person
+        {
+            public Person( int id )
+            {
+                if ( id < 0 )
+                {
+                    throw new ArgumentOutOfRangeException( "id", id, "The identifier must be greater than zero." );
+                }
+        
+                Id = id;
+            }
+        
+            public int Id { get; }
+        }
+        
+        [TestClass]
+        public class PersonTest : UnitTest
+        {
+            [TestMethod]
+            public void ConstructorShouldNotAllowNullName()
+            {
+                Assert.ThrowsIfArgumentIsOutOfRange( id => new Person( id ), -1 );
+            }
+        }
+        ]]>
+    </code>
+   </example>
+   <example>
+    This example illustrates asserting an exception for an argument that is out of range.
+    <code lang="C#">
+     <![CDATA[
+        using Microsoft.VisualStudio.TestTools.UnitTesting;
+        using System;
+        
+        public class Person
+        {
+            public Person( int id )
+            {
+                if ( id < 0 )
+                {
+                    throw new ArgumentOutOfRangeException( "id", id, "The identifier must be greater than zero." );
+                }
+        
+                Id = id;
+            }
+        
+            public int Id { get; }
+        }
+        
+        [TestClass]
+        public class PersonTest : UnitTest
+        {
+            [TestMethod]
+            public void ConstructorShouldNotAllowNullName()
+            {
+                Assert.ThrowsIfArgumentIsOutOfRange( id => new Person( id ), -1, "An argument out of range exception was expected." );
+            }
+        }
+        ]]>
+    </code>
+   </example>
+  </Member>
+  <Member name="ThrowsIfArgumentIsOutOfRange`2">
+   <example>
+    This example illustrates asserting an exception for an argument that is out of range.
+    <code lang="C#">
+     <![CDATA[
+        using Microsoft.VisualStudio.TestTools.UnitTesting;
+        using System;
+        
+        public class Person
+        {
+            public Person( int id )
+            {
+                if ( id < 0 )
+                {
+                    throw new ArgumentOutOfRangeException( "id", id, "The identifier must be greater than zero." );
+                }
+        
+                Id = id;
+            }
+        
+            public int Id { get; }
+        }
+        
+        [TestClass]
+        public class PersonTest : UnitTest
+        {
+            [TestMethod]
+            public void ConstructorShouldNotAllowNullName()
+            {
+                Assert.ThrowsIfArgumentIsOutOfRange<int, ArgumentOutOfRangeException>( id => new Person( id ), -1 );
+            }
+        }
+        ]]>
+    </code>
+   </example>
+   <example>
+    This example illustrates asserting an exception for an argument that is out of range.
+    <code lang="C#">
+     <![CDATA[
+        using Microsoft.VisualStudio.TestTools.UnitTesting;
+        using System;
+        
+        public class Person
+        {
+            public Person( int id )
+            {
+                if ( id < 0 )
+                {
+                    throw new ArgumentOutOfRangeException( "id", id, "The identifier must be greater than zero." );
+                }
+        
+                Id = id;
+            }
+        
+            public int Id { get; }
+        }
+        
+        [TestClass]
+        public class PersonTest : UnitTest
+        {
+            [TestMethod]
+            public void ConstructorShouldNotAllowNullName()
+            {
+                Assert.ThrowsIfArgumentIsOutOfRange<int, ArgumentOutOfRangeException>( id => new Person( id ), -1, "An argument out of range exception was expected." );
+            }
+        }
+        ]]>
+    </code>
+   </example>
+  </Member>
+  <Member name="ThrowsForArgument`1">
+   <example>
+    This example illustrates asserting an exception.
+    <code lang="C#">
+     <![CDATA[
+        using Microsoft.VisualStudio.TestTools.UnitTesting;
+        using System;
+        
+        public class Person
+        {
+            private string name;
+        
+            public string Name
+            {
+                get => name;
+                set => name = value ?? throw new ArgumentNullException( "value" );
+            }
+        }
+        
+        [TestClass]
+        public class PersonTest : UnitTest
+        {
+            [TestMethod]
+            public void ConstructorShouldNotAllowNullName()
+            {
+                var target = new Person();
+                Assert.ThrowsForArgument( () => target.Name = null, "value" );
+            }
+        }
+        ]]>
+    </code>
+   </example>
+   <example>
+    This example illustrates asserting an exception.
+    <code lang="C#">
+     <![CDATA[
+        using Microsoft.VisualStudio.TestTools.UnitTesting;
+        using System;
+        
+        public class Person
+        {
+            private string name;
+        
+            public string Name
+            {
+                get => name;
+                set => name = value ?? throw new ArgumentNullException( "value" );
+            }
+        }
+        
+        [TestClass]
+        public class PersonTest : UnitTest
+        {
+            [TestMethod]
+            public void ConstructorShouldNotAllowNullName()
+            {
+                var target = new Person();
+                Assert.ThrowsForArgument( () => target.Name = null, "value", "An exception was expected, but not thrown." );
+            }
+        }
+        ]]>
+    </code>
+   </example>
+  </Member>
+ </Type>
+ <Type name="INotifyPropertyChangedExtensions">
+  <Member name="PropertyChanged`2">
+   <example>
+    This example illustrates asserting that updating a property raises the appropriate events.
+    <code lang="C#">
+     <![CDATA[
+        using Microsoft.VisualStudio.TestTools.UnitTesting;
+        using System;
+        using System.ComponentModel;
+        
+        public class Person : INotifyPropertyChanged
+        {
+            private string name;
+        
+            public string Name
+            {
+                get => name;
+                set
+                {
+                    if ( name == value )
+                    {
+                        return;
+                    }
+        
+                    name = value;
+                    OnPropertyChanged( new PropertyChangedEventArgs( "Name" ) );
+                }
+            }
+        
+            public event PropertyChangedEventHandler PropertyChanged;
+            
+            protected virtual void OnPropertyChanged( PropertyChangedEventArgs e ) => PropertyChanged?.Invoke( this, e );
+        }
+        
+        [TestClass]
+        public class PersonTest : UnitTest
+        {
+            [TestMethod]
+            public void NamePropertyShouldRaisePropertyChangedWhenUpdated()
+            {
+                var target = new Person();
+                var expected = "Bob";
+                Assert.PropertyChanged( target, p => p.Name, expected );
+                Assert.AreEqual( expected, target.Name );
+            }
+        }
+        ]]>
+    </code>
+   </example>
+   <example>
+    This example illustrates asserting that updating a property raises the appropriate events.
+    <code lang="C#">
+     <![CDATA[
+        using Microsoft.VisualStudio.TestTools.UnitTesting;
+        using System;
+        using System.ComponentModel;
+        
+        public class Person : INotifyPropertyChanged
+        {
+            private string first;
+            private string last;
+        
+            public string FirstName
+            {
+                get => first;
+                set
+                {
+                    if ( first == value )
+                    {
+                        return;
+                    }
+                    
+                    first = value;
+                    OnPropertyChanged( new PropertyChangedEventArgs( nameof( FirstName ) ) );
+                    OnPropertyChanged( new PropertyChangedEventArgs( nameof( FullName ) ) );
+                }
+            }
+        
+            public string LastName
+            {
+                get => last;
+                set
+                {
+                    if ( last == value )
+                    {
+                        return;
+                    }
+        
+                    last = value;
+                    OnPropertyChanged( new PropertyChangedEventArgs( nameof( FirstName ) ) );
+                    OnPropertyChanged( new PropertyChangedEventArgs( nameof( FullName ) ) );
+                }
+            }
+        
+            public string FullName => $"{FirstName} {LastName}";
+        
+            public event PropertyChangedEventHandler PropertyChanged;
+            
+            protected virtual void OnPropertyChanged( PropertyChangedEventArgs e ) => PropertyChanged?.Invoke( this, e );
+        }
+        
+        [TestClass]
+        public class PersonTest : UnitTest
+        {
+            [TestMethod]
+            public void NamePropertyShouldRaisePropertyChangedWhenUpdated()
+            {
+                var target = new Person();
+                var expected = "Bob";
+                Assert.PropertyChanged( target, p => p.Name, expected, p => p.FullName );
+                Assert.AreEqual( expected, target.Name );
+            }
+        }
+        ]]>
+    </code>
+   </example>
+  </Member>
+  <Member name="PropertyNotChanged`2">
+   <example>
+    This example illustrates asserting that updating a property does not raise any events.
+    <code lang="C#">
+     <![CDATA[
+        using Microsoft.VisualStudio.TestTools.UnitTesting;
+        using System;
+        using System.ComponentModel;
+        
+        public class Person : INotifyPropertyChanged
+        {
+            private string name;
+        
+            public string Name
+            {
+                get => name;
+                set
+                {
+                    if ( name == value )
+                    {
+                        return;
+                    }
+        
+                    name = value;
+                    OnPropertyChanged( new PropertyChangedEventArgs( nameof( Name ) ) );
+                }
+            }
+        
+            public event PropertyChangedEventHandler PropertyChanged;
+            
+            protected virtual void OnPropertyChanged( PropertyChangedEventArgs e ) => PropertyChanged?.Invoke( this, e );
+        }
+        
+        [TestClass]
+        public class PersonTest : UnitTest
+        {
+            [TestMethod]
+            public void NamePropertyShouldNotRaisePropertyChangedWhenValueIsUnchanged()
+            {
+                var target = new Person();
+                var expected = "Bob";
+                var target.Name = expected;
+                Assert.PropertyNotChanged( target, p => p.Name, expected );
+            }
+        }
+        ]]>
+    </code>
+   </example>
+  </Member>
+ </Type>
+ <Type name="INotifyCollectionChangedExtensions">
+  <Member name="AddChangedCollection`2">
+   <example>
+    This example illustrates asserting that adding an element to a collection raises the appropriate events.
+    <code lang="C#">
+     <![CDATA[
+        using Microsoft.VisualStudio.TestTools.UnitTesting;
+        using System;
+        using System.Collections.Generic;
+        using System.Collections.Specialized;
+        
+        [TestClass]
+        public class PersonTest : UnitTest
+        {
+            [TestMethod]
+            public void AddShouldInsertElementIntoCollection()
+            {
+                var target = new ObservableCollection<int>();
+                Assert.AddChangedCollection( target, 1 );
+            }
+        }
+        ]]>
+    </code>
+   </example>
+   <example>
+    This example illustrates asserting that adding an element to a collection raises the appropriate events.
+    <code lang="C#">
+     <![CDATA[
+        using Microsoft.VisualStudio.TestTools.UnitTesting;
+        using System;
+        using System.Collections.Generic;
+        using System.Collections.Specialized;
+        
+        [TestClass]
+        public class PersonTest : UnitTest
+        {
+            [TestMethod]
+            public void AddShouldInsertElementIntoCollection()
+            {
+                var target = new ObservableCollection<int>();
+                Assert.AddChangedCollection( target, 1, 0 );
+            }
+        }
+        ]]>
+    </code>
+   </example>
+   <example>
+    This example illustrates asserting that adding an element to a collection raises the appropriate events.
+    An indexer expression translates to a property named "Item[]".
+    <code lang="C#">
+     <![CDATA[
+        using Microsoft.VisualStudio.TestTools.UnitTesting;
+        using System;
+        using System.Collections.Generic;
+        using System.Collections.Specialized;
+        
+        [TestClass]
+        public class PersonTest : UnitTest
+        {
+            [TestMethod]
+            public void AddShouldInsertElementIntoCollection()
+            {
+                var target = new ObservableCollection<int>();
+                Assert.AddChangedCollection( target, 1, c => c.Count, c => c[0] );
+            }
+        }
+        ]]>
+    </code>
+   </example>
+   <example>
+    This example illustrates asserting that adding an element to a collection raises the appropriate events.
+    An indexer expression translates to a property named "Item[]".
+    <code lang="C#">
+     <![CDATA[
+        using Microsoft.VisualStudio.TestTools.UnitTesting;
+        using System;
+        using System.Collections.Generic;
+        using System.Collections.Specialized;
+        
+        [TestClass]
+        public class PersonTest : UnitTest
+        {
+            [TestMethod]
+            public void AddShouldInsertElementIntoCollection()
+            {
+                var target = new ObservableCollection<int>();
+                Assert.AddChangedCollection( target, 1, 0, c => c.Count, c => c[0] );
+            }
+        }
+        ]]>
+    </code>
+   </example>
+  </Member>
+  <Member name="RemoveChangedCollection`2">
+   <example>
+    This example illustrates asserting that removing an element from a collection raises the appropriate events.
+    <code lang="C#">
+     <![CDATA[
+        using Microsoft.VisualStudio.TestTools.UnitTesting;
+        using System;
+        using System.Collections.Generic;
+        using System.Collections.Specialized;
+        
+        [TestClass]
+        public class PersonTest : UnitTest
+        {
+            [TestMethod]
+            public void RemoveShouldRemoveElementFromCollection()
+            {
+                var target = new ObservableCollection<int>(){ 1, 2, 3 };
+                Assert.RemoveChangedCollection( target, 2, 1 );
+            }
+        }
+        ]]>
+    </code>
+   </example>
+   <example>
+    This example illustrates asserting that removing an element from a collection raises the appropriate events.
+    An indexer expression translates to a property named "Item[]".
+    <code lang="C#">
+     <![CDATA[
+        using Microsoft.VisualStudio.TestTools.UnitTesting;
+        using System;
+        using System.Collections.Generic;
+        using System.Collections.Specialized;
+        
+        [TestClass]
+        public class PersonTest : UnitTest
+        {
+            [TestMethod]
+            public void RemoveShouldRemoveElementFromCollection()
+            {
+                var target = new ObservableCollection<int>(){ 1, 2, 3 };
+                Assert.RemoveChangedCollection( target, 2, 1, c => c.Count, c => c[0] );
+            }
+        }
+        ]]>
+    </code>
+   </example>
+  </Member>
+  <Member name="InsertChangedCollection`2">
+   <example>
+    This example illustrates asserting that inserting an element into a collection raises the appropriate events.
+    <code lang="C#">
+     <![CDATA[
+        using Microsoft.VisualStudio.TestTools.UnitTesting;
+        using System;
+        using System.Collections.Generic;
+        using System.Collections.Specialized;
+        
+        [TestClass]
+        public class PersonTest : UnitTest
+        {
+            [TestMethod]
+            public void InsertShouldAddElementIntoCollectionAtSpecifiedIndex()
+            {
+                var target = new ObservableCollection<int>(){ 1, 2, 3 };
+                Assert.InsertChangedCollection( target, 4, 1 );
+            }
+        }
+        ]]>
+    </code>
+   </example>
+   <example>
+    This example illustrates asserting that inserting an element into a collection raises the appropriate events.
+    An indexer expression translates to a property named "Item[]".
+    <code lang="C#">
+     <![CDATA[
+        using Microsoft.VisualStudio.TestTools.UnitTesting;
+        using System;
+        using System.Collections.Generic;
+        using System.Collections.Specialized;
+        
+        [TestClass]
+        public class PersonTest : UnitTest
+        {
+            [TestMethod]
+            public void InsertShouldAddElementIntoCollectionAtSpecifiedIndex()
+            {
+                var target = new ObservableCollection<int>(){ 1, 2, 3 };
+                Assert.InsertChangedCollection( target, 4, 1, c => c.Count, c => c[0] );
+            }
+        }
+        ]]>
+    </code>
+   </example>
+  </Member>
+  <Member name="IndexerChangedCollection`2">
+   <example>
+    This example illustrates asserting that replacing an element in a collection raises the appropriate events.
+    <code lang="C#">
+     <![CDATA[
+        using Microsoft.VisualStudio.TestTools.UnitTesting;
+        using System;
+        using System.Collections.Generic;
+        using System.Collections.Specialized;
+        
+        [TestClass]
+        public class PersonTest : UnitTest
+        {
+            [TestMethod]
+            public void IndexerShouldReplaceElementInCollectionAtSpecifiedIndex()
+            {
+                var target = new ObservableCollection<int>(){ 1, 2, 3 };
+                Assert.IndexerChangedCollection( target, 4, 0 );
+            }
+        }
+        ]]>
+    </code>
+   </example>
+   <example>
+    This example illustrates asserting that replacing an element in a collection raises the appropriate events.
+    An indexer expression translates to a property named "Item[]".
+    <code lang="C#">
+     <![CDATA[
+        using Microsoft.VisualStudio.TestTools.UnitTesting;
+        using System;
+        using System.Collections.Generic;
+        using System.Collections.Specialized;
+        
+        [TestClass]
+        public class PersonTest : UnitTest
+        {
+            [TestMethod]
+            public void IndexerShouldReplaceElementInCollectionAtSpecifiedIndex()
+            {
+                var target = new ObservableCollection<int>(){ 1, 2, 3 };
+                Assert.IndexerChangedCollection( target, 4, 0, c => c.Count, c => c[0] );
+            }
+        }
+        ]]>
+    </code>
+   </example>
+  </Member>
+  <Member name="ClearChangedCollection`2">
+   <example>
+    This example illustrates asserting that clearing a collection raises the appropriate events.
+    <code lang="C#">
+     <![CDATA[
+        using Microsoft.VisualStudio.TestTools.UnitTesting;
+        using System;
+        using System.Collections.Generic;
+        using System.Collections.Specialized;
+        
+        [TestClass]
+        public class PersonTest : UnitTest
+        {
+            [TestMethod]
+            public void ClearShouldRemoveItemsFromCollection()
+            {
+                var target = new ObservableCollection<int>(){ 1, 2, 3 };
+                Assert.ClearChangedCollection( target );
+            }
+        }
+        ]]>
+    </code>
+   </example>
+   <example>
+    This example illustrates asserting that clearing a collection raises the appropriate events.
+    An indexer expression translates to a property named "Item[]".
+    <code lang="C#">
+     <![CDATA[
+        using Microsoft.VisualStudio.TestTools.UnitTesting;
+        using System;
+        using System.Collections.Generic;
+        using System.Collections.Specialized;
+        
+        [TestClass]
+        public class PersonTest : UnitTest
+        {
+            [TestMethod]
+            public void ClearShouldRemoveItemsFromCollection()
+            {
+                var target = new ObservableCollection<int>(){ 1, 2, 3 };
+                Assert.ClearChangedCollection( target, c => c.Count, c => c[0] );
+            }
+        }
+        ]]>
+    </code>
+   </example>
+  </Member>
+ </Type>
+</Types>
