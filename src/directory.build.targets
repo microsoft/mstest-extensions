@@ -7,6 +7,26 @@
     <Import Project="..\build\nuget.targets" />
   </ImportGroup>
 
-  <Target Name="GetTargetPath" Outputs="$(TargetPath)" />
+  <Target Name="GetTargetPath" Outputs="@(TargetPath)">
+
+    <PropertyGroup>
+      <TargetFrameworks Condition=" '$(TargetFrameworks)' == '' ">$(TargetFramework)</TargetFrameworks>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <_TargetFrameworks Include="$(TargetFrameworks)" />
+    </ItemGroup>
+
+    <MSBuild Projects="$(MSBuildProjectFullPath)"
+             Targets="GetTargetPathForTfm"
+             Properties="Configuration=$(Configuration);TargetFramework=%(_TargetFrameworks.Identity)"
+             UnloadProjectsOnCompletion="true"
+             BuildInParallel="true">
+      <Output TaskParameter="TargetOutputs" ItemName="TargetPath" />
+    </MSBuild>
+
+  </Target>
+
+  <Target Name="GetTargetPathForTfm" Outputs="$(TargetPath)" />
 
 </Project>

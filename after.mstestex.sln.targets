@@ -7,7 +7,7 @@
 
     <PropertyGroup>
       <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-      <BuildProperties>Configuration=$(Configuration)</BuildProperties>
+      <BuildProperties>Configuration=$(Configuration);TargetFramework=netstandard1.0</BuildProperties>
       <BuildProperties Condition=" ('$(Platform)' != '') AND ('$(Platform)' != 'AnyCPU') AND ('$(Platform)' != 'Any CPU') ">$(BuildProperties);Platform=$(Platform)</BuildProperties>
     </PropertyGroup>
 
@@ -22,7 +22,7 @@
     <PropertyGroup>
       <!-- transform list to pipe-separated values so we can forward it as a parameter using a build property -->
       <SigningProperties>
-        SourceDir=$(MSBuildThisFileDirectory)\src;
+        SourceDir=$(MSBuildThisFileDirectory)src\;
         FilesToSign=@(TargetFiles->'%(Identity)','|')
       </SigningProperties>
     </PropertyGroup>
