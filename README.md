@@ -1,3 +1,5 @@
+![VSTS Build Status](https://microsoft.visualstudio.com/_apis/public/build/definitions/8d47e068-03c8-4cdc-aa9b-fc6929290322/26038/badge "Build Status")
+
 # Microsoft Test Framework Extensions
 This project provides extensions to the Microsoft Visual Studio Team Test unit testing framework. Features include alternatives to **ExpectedExceptionAttribute** and a fully extensible assertion application programming interface. The extensibility model is designed to allow swapping out the default **Assert** class and still maintain source code compatibility with the same intrinsic built-in functionality. You're then free to change, customize, or leverage the many built-in extensions.
 
