@@ -1,9 +1,9 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
  <PropertyGroup>
   <VersionPrefix>2.0.0</VersionPrefix>
   <AssemblyVersion>2.0.0.0</AssemblyVersion>
-  <TargetFrameworks>netstandard1.0;net45;uap10.0</TargetFrameworks>
+  <TargetFrameworks>netstandard1.0;netstandard2.1;net45;uap10.0</TargetFrameworks>
   <AssemblyTitle>Microsoft Visual Studio Unit Test Framework Extensions</AssemblyTitle>
   <Description>This package contains extensions to the Microsoft Visual Studio Team Test unit testing framework. Features include alternatives to ExpectedExceptionAttribute and a fully extensible assertion application programming interface.</Description>
   <RootNamespace>Microsoft.VisualStudio.TestTools.UnitTesting</RootNamespace>
