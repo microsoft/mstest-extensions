@@ -6,6 +6,9 @@ namespace Microsoft.VisualStudio.TestTools.UnitTesting
     using System;
     using System.Collections.Generic;
     using System.Globalization;
+#if NETSTANDARD2_1_OR_GREATER
+    using System.Diagnostics.CodeAnalysis;
+#endif
     using System.Linq;
     using static FailedTestMessage;
 
@@ -495,14 +498,14 @@ namespace Microsoft.VisualStudio.TestTools.UnitTesting
         /// <param name="value">The object to verify is not null.</param>
         /// <exception cref="AssertFailedException">
         /// <paramref name="value" /> is null.</exception>
-        public virtual void IsNotNull( object value ) => Assert.IsNotNull( value );
+        public virtual void IsNotNull( [NotNull] object value ) => Assert.IsNotNull( value );
 
         /// <summary>Verifies that the specified object is not null. The assertion fails if it is null. Displays a message if the assertion fails.</summary>
         /// <param name="value">The object to verify is not null.</param>
         /// <param name="message">A message to display if the assertion fails. This message can be seen in the unit test results.</param>
         /// <exception cref="AssertFailedException">
         /// <paramref name="value" /> is null.</exception>
-        public virtual void IsNotNull( object value, string message ) => Assert.IsNotNull( value, message );
+        public virtual void IsNotNull( [NotNull] object value, string message ) => Assert.IsNotNull( value, message );
 
         /// <summary>Verifies that the specified object is not null. The assertion fails if it is null. Displays a message if the assertion fails, and applies the specified formatting to it.</summary>
         /// <param name="value">The object to verify is not null.</param>
@@ -510,7 +513,7 @@ namespace Microsoft.VisualStudio.TestTools.UnitTesting
         /// <param name="parameters">An array of parameters to use when formatting <paramref name="message" />.</param>
         /// <exception cref="AssertFailedException">
         /// <paramref name="value" /> is null.</exception>
-        public virtual void IsNotNull( object value, string message, params object[] parameters ) => Assert.IsNotNull( value, message, parameters );
+        public virtual void IsNotNull( [NotNull] object value, string message, params object[] parameters ) => Assert.IsNotNull( value, message, parameters );
 
         /// <summary>Verifies that the specified object is null. The assertion fails if it is not null.</summary>
         /// <param name="value">The object to verify is null.</param>
